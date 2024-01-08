@@ -1,0 +1,52 @@
+<div>
+ <p>Your Data : </p>
+</div>
+<br>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Index</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Description</th>
+        <th scope="col">Action</th>
+        <th scope="col"><button class="delete-btn" (click)="onDelete()" class="btn btn-danger">Delete</button></th>
+        <th scope="col"><button class="edit-btn" (click)="onEdit()" class="btn btn-primary">Edit</button></th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users;let i=index">
+        <tr *ngIf="save">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user.data ? user.data[0]?.name : '' }}</td>
+            <td>{{user.data ? user.data[0]?.age : '' }}</td>
+            <td>{{user.data ? user.data[0]?.gender : '' }}</td>
+            <td>{{user.data ? user.data[0]?.description : '' }}</td>
+          </tr>
+          <tr *ngIf="normal">
+            <th scope="row">{{i+1}}</th>
+            <td>{{user?.name}}</td>
+            <td>{{user?.age}}</td>
+            <td>{{user?.gender}}</td>
+            <td>{{user?.description}}</td>
+          </tr>
+          <ng-container *ngFor="let userData of user">
+            <tr>
+              <td>{{ userData?.name || '' }}</td>
+              <td>{{ userData?.age || '' }}</td>
+              <td>{{ userData?.gender || '' }}</td>
+              <td>{{ userData?.description || '' }}</td>
+            </tr>
+          </ng-container>
+    </tbody>
+  </table>
+  <br><br><br><br>
+  <div>
+    <button type="button" (click)="onSave()" class="btn btn-success">Save</button>
+  </div>
+  <br><br>
+  <div>
+    <button type="button" class="btn btn-primary" >Is there anyone above age 40 :  {{above}} </button>
+  </div>
+  
+
